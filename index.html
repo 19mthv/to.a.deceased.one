@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thư gửi Bố</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf4f1;--card:#fffaf7;--ink:#4a4150;--mute:#8d8294;--pink:#f0d3de;--blue:#d3dcf0;--green:#d7eadf;--line:#eadde0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241f29;--card:#2e2833;--ink:#efe6ee;--mute:#a999b0;--pink:#4a3743;--blue:#363c52;--green:#344239;--line:#443b4a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#241f29;--card:#2e2833;--ink:#efe6ee;--mute:#a999b0;--pink:#4a3743;--blue:#363c52;--green:#344239;--line:#443b4a;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:linear-gradient(160deg,var(--bg),var(--blue) 140%);color:var(--ink);font-family:"Lora","Noto Serif","Times New Roman",Times,serif;min-height:100%;background-color:var(--bg)}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+header{text-align:center;padding:18px 0 8px}
+h1{font-weight:normal;font-size:1.9rem;margin:0 0 6px}
+#date{color:var(--mute);text-transform:capitalize}
+#time{font-size:2rem;letter-spacing:2px;margin-top:2px}
+#tz{color:var(--mute);font-size:.85rem}
+nav{display:flex;gap:8px;justify-content:center;margin:18px 0;flex-wrap:wrap}
+button,.btn{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 16px;border-radius:999px;cursor:pointer}
+button:hover,.btn:hover{background:var(--pink)}
+nav button.on{background:var(--pink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 4px 18px rgba(120,90,130,.08)}
+label{display:block;color:var(--mute);font-size:.9rem;margin:10px 0 4px}
+input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px}
+textarea{min-height:240px;line-height:1.7;resize:vertical}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.thumb{position:relative}
+.thumb img{width:84px;height:84px;object-fit:cover;border-radius:12px;display:block}
+.thumb b{position:absolute;top:-6px;right:-6px;background:var(--pink);border-radius:50%;width:22px;height:22px;text-align:center;line-height:22px;cursor:pointer;font-weight:normal}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.grid figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.grid img{width:100%;aspect-ratio:1;object-fit:cover;display:block;cursor:zoom-in}
+.grid figcaption{padding:6px 10px;font-size:.85rem;color:var(--mute);display:flex;justify-content:space-between;gap:6px}
+.grid figcaption span{cursor:pointer}
+.letter-item{cursor:pointer}
+.letter-item h3{margin:0 0 4px;font-weight:normal}
+.meta{color:var(--mute);font-size:.85rem}
+.preview{white-space:pre-wrap;margin-top:6px;max-height:3.4em;overflow:hidden}
+dialog{border:1px solid var(--line);border-radius:20px;background:var(--card);color:var(--ink);max-width:min(680px,94vw);width:100%;max-height:88vh;padding:22px}
+dialog::backdrop{background:rgba(60,40,70,.45)}
+.body{white-space:pre-wrap;line-height:1.9;font-size:1.05rem;margin:14px 0}
+.body-imgs img{max-width:100%;border-radius:14px;margin:6px 0}
+audio{width:100%;margin-top:10px}
+.hide{display:none}
+.empty{text-align:center;color:var(--mute);padding:30px 0}
+.picks{display:flex;gap:6px;flex-wrap:wrap}
+.picks button{font-size:1.4rem;padding:4px 10px;border-radius:14px}
+.picks button.on{background:var(--pink);border-color:var(--mute)}
+input[type=date]{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:9px}
+.paper{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:26px 24px;margin-top:10px}
+.paper-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.paper-top .l{font-size:1.8rem;line-height:1.2}
+.paper-top .r{text-align:right;color:var(--mute);font-size:.95rem}
+.sign{text-align:right;margin-top:18px;font-style:italic}
+input[type=password]{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px}
+.auth{max-width:420px;margin:0 auto}
+.auth button.on{background:var(--pink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🕊️ Thư gửi Bố</h1>
+    <div id="date"></div>
+    <div id="time"></div>
+    <div id="tz"></div>
+    <div id="userbar" class="hide meta" style="margin-top:10px">👤 <span id="uname"></span> <button type="button" id="themeBtn" style="padding:3px 12px;font-size:.85rem;margin-left:6px">🎨 Màu sắc</button> <button type="button" id="logout" style="padding:3px 12px;font-size:.85rem;margin-left:6px">Đăng xuất</button></div>
+  </header>
+
+  <section id="auth" class="card auth hide">
+    <div class="row" style="justify-content:center;margin-bottom:6px">
+      <button type="button" class="on" id="tabLogin">Đăng nhập</button>
+      <button type="button" id="tabReg">Tạo tài khoản</button>
+    </div>
+    <label>Tên đăng nhập</label>
+    <input type="text" id="u" autocomplete="username">
+    <label>Mật khẩu</label>
+    <input type="password" id="p" autocomplete="current-password">
+    <div id="p2box" class="hide">
+      <label>Nhập lại mật khẩu</label>
+      <input type="password" id="p2" autocomplete="new-password">
+    </div>
+    <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="remember"> Ghi nhớ đăng nhập trên máy này</label>
+    <div class="row" style="margin-top:14px"><button type="button" id="authGo" style="background:var(--green)">Đăng nhập</button><span id="authMsg" class="meta"></span></div>
+    <p class="meta">Tài khoản chỉ lưu trên thiết bị này, không đồng bộ giữa các máy. Mật khẩu chỉ giúp tránh mở nhầm thư, không phải bảo mật tuyệt đối.</p>
+  </section>
+
+  <div id="app" class="hide">
+  <nav>
+    <button data-tab="write" class="on">✍️ Viết thư</button>
+    <button data-tab="letters">💌 Thư đã viết</button>
+    <button data-tab="gallery">🖼️ Kho ảnh</button>
+  </nav>
+
+  <section id="write" class="card">
+    <div class="row" style="align-items:flex-end">
+      <div><label>Ngày viết</label><input type="date" id="wdate"></div>
+      <div style="flex:1;min-width:180px"><label>Nơi viết</label><input type="text" id="place" list="provinces" placeholder="Chọn hoặc gõ tên tỉnh / thành"></div>
+    </div>
+    <datalist id="provinces"></datalist>
+    <label>Hôm nay con thấy thế nào?</label>
+    <div class="picks" id="moods"></div>
+    <label>Thời tiết hôm nay</label>
+    <div class="picks" id="weathers"></div>
+    <div style="font-size:1.15rem;margin:14px 0 4px">💌 Gửi Bố</div>
+    <div class="row">
+      
+      
+      
+    </div>
+    
+    <label>Nội dung thư</label>
+    <textarea id="body" placeholder="Hôm nay con muốn kể với bố..."></textarea>
+    <label>Ký tên (tuỳ chọn)</label>
+    <input type="text" id="sign" placeholder="Tên của con">
+
+    <label>Ảnh đính kèm</label>
+    <div class="row">
+      <label class="btn" style="margin:0;color:var(--ink)">📷 Thêm ảnh<input type="file" id="pickPhotos" accept="image/*" multiple hidden></label>
+    </div>
+    <div class="thumbs" id="draftThumbs"></div>
+
+    <label>Bài hát đính kèm (chọn file nhạc từ máy)</label>
+    <div class="row">
+      <label class="btn" style="margin:0;color:var(--ink)">🎵 Chọn bài hát<input type="file" id="pickSong" accept="audio/*" hidden></label>
+      <span id="songName" class="meta"></span>
+      <button type="button" id="rmSong" class="hide">Bỏ bài</button>
+    </div>
+    <audio id="songPreview" controls class="hide"></audio>
+
+    <div class="row" style="margin-top:18px">
+      <button type="button" id="save" style="background:var(--green)">Gửi thư</button>
+      <span id="msg" class="meta"></span>
+    </div>
+  </section>
+
+  <section id="letters" class="hide"></section>
+
+  <section id="gallery" class="hide">
+    <div class="card row">
+      <label class="btn" style="margin:0;color:var(--ink)">➕ Tải ảnh lên<input type="file" id="galleryAdd" accept="image/*" multiple hidden></label>
+      <span class="meta">Ảnh được lưu ngay trên thiết bị này.</span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+</div>
+
+</div>
+<dialog id="dlg"></dialog>
+
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+/* ---------- 1. Đồng hồ: lấy múi giờ của thiết bị ---------- */
+const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+function tick() {
+  const d = new Date();
+  $('#date').textContent = d.toLocaleDateString('vi-VN', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  $('#time').textContent = d.toLocaleTimeString('vi-VN');
+  $('#tz').textContent = 'Múi giờ: ' + tz.replace(/_/g, ' ');
+}
+tick(); setInterval(tick, 1000);
+
+/* ---------- 2. Lưu trữ: IndexedDB (lưu được cả ảnh và nhạc) ---------- */
+let db;
+function openDB(name) {
+  return new Promise((ok, fail) => {
+    const r = indexedDB.open(name, 1);
+    r.onupgradeneeded = () => {
+      r.result.createObjectStore('letters', {keyPath:'id'});
+      r.result.createObjectStore('photos', {keyPath:'id'});
+    };
+    r.onsuccess = () => ok(r.result);
+    r.onerror = () => fail(r.error);
+  });
+}
+function run(store, mode, fn) {
+  return new Promise((ok, fail) => {
+    const t = db.transaction(store, mode);
+    const req = fn(t.objectStore(store));
+    t.oncomplete = () => ok(req && req.result);
+    t.onerror = () => fail(t.error);
+  });
+}
+const getAll = s => run(s, 'readonly', o => o.getAll());
+const put = (s, v) => run(s, 'readwrite', o => o.put(v));
+const del = (s, k) => run(s, 'readwrite', o => o.delete(k));
+
+/* ---------- 3. Chuyển tab ---------- */
+$$('nav button').forEach(b => b.onclick = () => {
+  $$('nav button').forEach(x => x.classList.toggle('on', x === b));
+  ['write','letters','gallery'].forEach(id => $('#'+id).classList.toggle('hide', id !== b.dataset.tab));
+  if (b.dataset.tab === 'letters') renderLetters();
+  if (b.dataset.tab === 'gallery') renderGallery();
+});
+
+/* ---------- 4. Viết thư ---------- */
+const PROVINCES = ['Hà Nội','TP. Hồ Chí Minh','Hải Phòng','Đà Nẵng','Cần Thơ','Huế','Tuyên Quang','Lào Cai','Thái Nguyên','Phú Thọ','Bắc Ninh','Hưng Yên','Ninh Bình','Quảng Ninh','Cao Bằng','Lạng Sơn','Lai Châu','Điện Biên','Sơn La','Thanh Hóa','Nghệ An','Hà Tĩnh','Quảng Trị','Quảng Ngãi','Gia Lai','Khánh Hòa','Lâm Đồng','Đắk Lắk','Đồng Nai','Tây Ninh','Vĩnh Long','Đồng Tháp','Cà Mau','An Giang'];
+const MOODS = ['😊','🥰','😌','🥹','😢','😔','😠','😴'];
+const WEATHERS = ['☀️','⛅','☁️','🌧️','⛈️','🌫️','🌬️','❄️'];
+let pick = {mood:'', weather:''};
+function buildPicks(id, list, key) {
+  const box = $(id);
+  list.forEach(e => {
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = e;
+    b.onclick = () => {
+      pick[key] = pick[key] === e ? '' : e;
+      [...box.children].forEach(x => x.classList.toggle('on', x.textContent === pick[key]));
+    };
+    box.append(b);
+  });
+}
+buildPicks('#moods', MOODS, 'mood');
+buildPicks('#weathers', WEATHERS, 'weather');
+$('#provinces').innerHTML = PROVINCES.map(p => `<option value="${p}">`).join('');
+function todayStr() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+$('#wdate').value = todayStr();
+const viDate = s => { const [y, m, d] = s.split('-'); return `ngày ${+d} tháng ${+m} năm ${y}`; };
+
+let draft = {photos: [], song: null};
+
+
+$('#pickPhotos').onchange = e => {
+  draft.photos.push(...e.target.files);
+  e.target.value = '';
+  renderDraft();
+};
+$('#pickSong').onchange = e => {
+  draft.song = e.target.files[0] || null;
+  e.target.value = '';
+  renderDraft();
+};
+$('#rmSong').onclick = () => { draft.song = null; renderDraft(); };
+
+function renderDraft() {
+  const box = $('#draftThumbs');
+  box.innerHTML = '';
+  draft.photos.forEach((f, i) => {
+    const w = document.createElement('div'); w.className = 'thumb';
+    const img = document.createElement('img'); img.src = URL.createObjectURL(f);
+    const x = document.createElement('b'); x.textContent = '×';
+    x.onclick = () => { draft.photos.splice(i, 1); renderDraft(); };
+    w.append(img, x); box.append(w);
+  });
+  const a = $('#songPreview');
+  if (draft.song) {
+    $('#songName').textContent = '🎶 ' + draft.song.name;
+    a.src = URL.createObjectURL(draft.song); a.classList.remove('hide');
+    $('#rmSong').classList.remove('hide');
+  } else {
+    $('#songName').textContent = ''; a.removeAttribute('src'); a.classList.add('hide');
+    $('#rmSong').classList.add('hide');
+  }
+}
+
+$('#save').onclick = async () => {
+  const body = $('#body').value.trim();
+  if (!body) { $('#msg').textContent = 'Chưa có nội dung để gửi.'; return; }
+  const now = new Date();
+  const letter = {
+    id: String(now.getTime()),
+    to: 'Bố',
+    body,
+    when: now.toISOString(),
+    tz,
+    date: $('#wdate').value || todayStr(),
+    place: $('#place').value.trim(),
+    mood: pick.mood,
+    weather: pick.weather,
+    sign: $('#sign').value.trim(),
+    photos: draft.photos,
+    song: draft.song
+  };
+  try {
+    await put('letters', letter);
+    draft = {photos: [], song: null};
+    $('#body').value = ''; $('#sign').value = ''; $('#place').value = '';
+    $('#wdate').value = todayStr(); pick = {mood:'', weather:''};
+    $$('.picks button').forEach(b => b.classList.remove('on'));
+    renderDraft();
+    $('#msg').textContent = 'Đã gửi thư 🤍';
+  } catch (err) {
+    $('#msg').textContent = 'Không lưu được (trình duyệt có thể đang chặn lưu trữ).';
+  }
+};
+
+/* ---------- 5. Danh sách thư + đọc thư ---------- */
+const fmt = iso => new Date(iso).toLocaleString('vi-VN', {dateStyle:'full', timeStyle:'short'});
+
+async function renderLetters() {
+  const box = $('#letters');
+  const list = (await getAll('letters')).sort((a, b) => b.id - a.id);
+  box.innerHTML = '';
+  if (!list.length) { box.innerHTML = '<div class="empty">Chưa có lá thư nào. Viết lá đầu tiên nhé.</div>'; return; }
+  list.forEach(l => {
+    const c = document.createElement('div'); c.className = 'card letter-item';
+    const h = document.createElement('h3'); h.textContent = 'Gửi Bố';
+    const m = document.createElement('div'); m.className = 'meta';
+    m.textContent = (l.place ? l.place + ' · ' : '') + (l.date ? viDate(l.date) : fmt(l.when)) + (l.mood ? ' · ' + l.mood : '') + (l.photos.length ? ' · 📷 ' + l.photos.length : '') + (l.song ? ' · 🎵' : '');
+    const p = document.createElement('div'); p.className = 'preview'; p.textContent = l.body;
+    c.append(h, m, p);
+    c.onclick = () => openLetter(l);
+    box.append(c);
+  });
+}
+
+function openLetter(l) {
+  const d = $('#dlg'); d.innerHTML = '';
+  const paper = document.createElement('div'); paper.className = 'paper';
+  const top = document.createElement('div'); top.className = 'paper-top';
+  const left = document.createElement('div'); left.className = 'l';
+  left.textContent = ((l.mood || '') + ' ' + (l.weather || '')).trim();
+  const right = document.createElement('div'); right.className = 'r';
+  right.textContent = [l.place, l.date ? viDate(l.date) : fmt(l.when)].filter(Boolean).join(', ');
+  top.append(left, right);
+  const h = document.createElement('div'); h.textContent = 'Gửi Bố,';
+  h.style.cssText = 'margin-top:22px;font-size:1.15rem';
+  const b = document.createElement('div'); b.className = 'body'; b.textContent = l.body;
+  paper.append(top, h, b);
+  if (l.sign) { const s = document.createElement('div'); s.className = 'sign'; s.textContent = l.sign; paper.append(s); }
+  d.append(paper);
+  if (l.photos.length) {
+    const g = document.createElement('div'); g.className = 'body-imgs';
+    l.photos.forEach(f => { const i = document.createElement('img'); i.src = URL.createObjectURL(f); g.append(i); });
+    paper.append(g);
+  }
+  if (l.song) {
+    const s = document.createElement('div'); s.className = 'meta'; s.textContent = '🎶 ' + l.song.name;
+    const a = document.createElement('audio'); a.controls = true; a.src = URL.createObjectURL(l.song);
+    d.append(s, a);
+  }
+  const row = document.createElement('div'); row.className = 'row'; row.style.marginTop = '16px';
+  const close = document.createElement('button'); close.textContent = 'Đóng'; close.onclick = () => d.close();
+  const rm = document.createElement('button'); rm.textContent = 'Xoá thư';
+  rm.onclick = async () => {
+    if (confirm('Xoá lá thư này? Không khôi phục được đâu.')) { await del('letters', l.id); d.close(); renderLetters(); }
+  };
+  row.append(close, rm); d.append(row);
+  d.showModal();
+}
+
+/* ---------- 6. Kho ảnh ---------- */
+$('#galleryAdd').onchange = async e => {
+  const files = [...e.target.files]; e.target.value = '';
+  for (const f of files) await put('photos', {id: Date.now() + '-' + Math.random().toString(36).slice(2, 7), file: f, name: f.name.replace(/\.[^.]+$/, '')});
+  renderGallery();
+};
+
+async function renderGallery() {
+  const g = $('#grid');
+  const list = await getAll('photos');
+  g.innerHTML = '';
+  if (!list.length) { g.innerHTML = '<div class="empty" style="grid-column:1/-1">Kho ảnh còn trống.</div>'; return; }
+  list.forEach(p => {
+    const fig = document.createElement('figure');
+    const img = document.createElement('img'); img.src = URL.createObjectURL(p.file);
+    img.onclick = () => {
+      const d = $('#dlg'); d.innerHTML = '';
+      const big = document.createElement('img'); big.src = img.src; big.style.cssText = 'max-width:100%;border-radius:14px';
+      const c = document.createElement('button'); c.textContent = 'Đóng'; c.style.marginTop = '12px'; c.onclick = () => d.close();
+      d.append(big, document.createElement('br'), c); d.showModal();
+    };
+    const cap = document.createElement('figcaption');
+    const t = document.createElement('span'); t.textContent = p.name; t.title = 'Bấm để đổi tên';
+    t.onclick = async () => { const n = prompt('Chú thích:', p.name); if (n !== null) { p.name = n; await put('photos', p); renderGallery(); } };
+    const x = document.createElement('span'); x.textContent = '🗑';
+    x.onclick = async () => { if (confirm('Xoá ảnh này?')) { await del('photos', p.id); renderGallery(); } };
+    cap.append(t, x); fig.append(img, cap); g.append(fig);
+  });
+}
+
+/* ---------- 7. Tài khoản trên máy ---------- */
+const USERS_KEY = 'tbm_users', SESSION_KEY = 'tbm_session';
+function readUsers() { try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch (e) { return {}; } }
+function writeUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+function getSession() { try { return sessionStorage.getItem(SESSION_KEY) || localStorage.getItem(SESSION_KEY); } catch (e) { return null; } }
+function clearSession() { try { sessionStorage.removeItem(SESSION_KEY); localStorage.removeItem(SESSION_KEY); } catch (e) {} }
+const toHex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+
+// Băm mật khẩu: không lưu mật khẩu thật, chỉ lưu "dấu vân tay" của nó (PBKDF2 + muối ngẫu nhiên)
+async function hashPw(pw, saltHex) {
+  const salt = Uint8Array.from(saltHex.match(/.{2}/g).map(h => parseInt(h, 16)));
+  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveBits']);
+  return toHex(await crypto.subtle.deriveBits({name: 'PBKDF2', salt, iterations: 150000, hash: 'SHA-256'}, key, 256));
+}
+
+function setMode(reg) {
+  regMode = reg;
+  $('#tabLogin').classList.toggle('on', !reg);
+  $('#tabReg').classList.toggle('on', reg);
+  $('#p2box').classList.toggle('hide', !reg);
+  $('#authGo').textContent = reg ? 'Tạo tài khoản' : 'Đăng nhập';
+  $('#authMsg').textContent = '';
+}
+let regMode = false;
+$('#tabLogin').onclick = () => setMode(false);
+$('#tabReg').onclick = () => setMode(true);
+['#u', '#p', '#p2'].forEach(s => $(s).addEventListener('keydown', e => { if (e.key === 'Enter') $('#authGo').click(); }));
+
+$('#authGo').onclick = async () => {
+  const name = $('#u').value.trim(), pw = $('#p').value, msg = $('#authMsg');
+  const key = name.toLowerCase();
+  if (!name || !pw) { msg.textContent = 'Nhập đủ tên đăng nhập và mật khẩu.'; return; }
+  if (!window.crypto || !crypto.subtle) { msg.textContent = 'Trình duyệt này không hỗ trợ tài khoản.'; return; }
+  const users = readUsers();
+  try {
+    if (regMode) {
+      if (users[key]) { msg.textContent = 'Tên này đã có người dùng.'; return; }
+      if (pw.length < 6) { msg.textContent = 'Mật khẩu cần ít nhất 6 ký tự.'; return; }
+      if (pw !== $('#p2').value) { msg.textContent = 'Hai mật khẩu chưa giống nhau.'; return; }
+      const salt = toHex(crypto.getRandomValues(new Uint8Array(16)));
+      // Tài khoản đầu tiên nhận lại kho dữ liệu cũ (thư viết trước khi có tài khoản)
+      const dbName = Object.keys(users).length ? 'thu-ba-me-' + encodeURIComponent(key) : 'thu-ba-me';
+      users[key] = {name, salt, hash: await hashPw(pw, salt), dbName};
+      writeUsers(users);
+    } else {
+      const u = users[key];
+      if (!u || u.hash !== await hashPw(pw, u.salt)) { msg.textContent = 'Sai tên đăng nhập hoặc mật khẩu.'; return; }
+    }
+    clearSession();
+    try { ($('#remember').checked ? localStorage : sessionStorage).setItem(SESSION_KEY, key); } catch (e) {}
+    location.reload();
+  } catch (err) { msg.textContent = 'Có lỗi xảy ra, thử lại nhé.'; }
+};
+
+/* ---------- 8. Tuỳ chỉnh màu sắc ---------- */
+const PRESETS = [
+  ['Hồng đào', {bg:'#fbf1f0', card:'#fffaf8', ink:'#4a4150', accent:'#f3d2dc'}],
+  ['Xanh biển', {bg:'#eef4fb', card:'#fafcff', ink:'#34435a', accent:'#cfe0f3'}],
+  ['Lục nhạt', {bg:'#f0f7f1', card:'#fbfefb', ink:'#34493c', accent:'#cfe6d6'}],
+  ['Tím lavender', {bg:'#f3f0fb', card:'#fcfbff', ink:'#443b5c', accent:'#ddd3f2'}],
+  ['Kem nâu', {bg:'#f8f1e7', card:'#fffaf2', ink:'#4d3f33', accent:'#ead8bd'}],
+  ['Đêm', {bg:'#221f2a', card:'#2c2836', ink:'#eee6f0', accent:'#4a4160'}]
+];
+const FIELDS = [['bg', 'Màu nền'], ['card', 'Màu khung'], ['ink', 'Màu chữ'], ['accent', 'Màu nhấn']];
+const THEME_VARS = ['--bg', '--card', '--ink', '--pink', '--blue', '--green', '--line', '--mute'];
+let themeKey = '', theme = null;
+
+// Đặt màu bằng cách ghi đè các biến CSS ở :root
+function applyTheme(t) {
+  const s = document.documentElement.style;
+  if (!t) { THEME_VARS.forEach(v => s.removeProperty(v)); return; }
+  s.setProperty('--bg', t.bg); s.setProperty('--card', t.card); s.setProperty('--ink', t.ink);
+  ['--pink', '--blue', '--green'].forEach(v => s.setProperty(v, t.accent));
+  s.setProperty('--line', 'color-mix(in srgb, ' + t.ink + ' 15%, ' + t.bg + ')');
+  s.setProperty('--mute', 'color-mix(in srgb, ' + t.ink + ' 60%, ' + t.bg + ')');
+}
+function loadTheme() { try { theme = JSON.parse(localStorage.getItem(themeKey)); } catch (e) { theme = null; } applyTheme(theme); }
+function saveTheme() { try { if (theme) localStorage.setItem(themeKey, JSON.stringify(theme)); else localStorage.removeItem(themeKey); } catch (e) {} }
+
+function openTheme() {
+  const d = $('#dlg'); d.innerHTML = '';
+  const cur = () => theme || {bg: '#fbf4f1', card: '#fffaf7', ink: '#4a4150', accent: '#f0d3de'};
+  const inputs = {};
+  const sync = () => FIELDS.forEach(([k]) => { inputs[k].value = cur()[k]; });
+  const h = document.createElement('h2'); h.textContent = '🎨 Màu sắc'; h.style.fontWeight = 'normal';
+  const hint = document.createElement('div'); hint.className = 'meta'; hint.textContent = 'Chọn một bộ màu có sẵn, hoặc tự chỉnh từng màu bên dưới.';
+  const pres = document.createElement('div'); pres.className = 'picks'; pres.style.margin = '12px 0';
+  PRESETS.forEach(([name, t]) => {
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = name;
+    b.style.cssText = 'font-size:.95rem;background:' + t.bg + ';color:' + t.ink + ';border-color:' + t.accent;
+    b.onclick = () => { theme = {...t}; applyTheme(theme); saveTheme(); sync(); };
+    pres.append(b);
+  });
+  const grid = document.createElement('div'); grid.className = 'row';
+  FIELDS.forEach(([k, label]) => {
+    const w = document.createElement('label'); w.style.cssText = 'display:flex;flex-direction:column;gap:4px;margin:0';
+    w.append(label);
+    const i = document.createElement('input'); i.type = 'color'; i.value = cur()[k];
+    i.style.cssText = 'width:64px;height:36px;padding:0;border:1px solid var(--line);border-radius:8px;background:none;cursor:pointer';
+    i.oninput = () => { theme = {...cur(), [k]: i.value}; applyTheme(theme); saveTheme(); };
+    inputs[k] = i; w.append(i); grid.append(w);
+  });
+  const row = document.createElement('div'); row.className = 'row'; row.style.marginTop = '16px';
+  const reset = document.createElement('button'); reset.type = 'button'; reset.textContent = 'Về mặc định';
+  reset.onclick = () => { theme = null; applyTheme(null); saveTheme(); sync(); };
+  const close = document.createElement('button'); close.type = 'button'; close.textContent = 'Xong'; close.onclick = () => d.close();
+  row.append(reset, close);
+  d.append(h, hint, pres, grid, row);
+  d.showModal();
+}
+
+async function boot() {
+  const key = getSession(), u = key && readUsers()[key];
+  if (!u) { $('#auth').classList.remove('hide'); return; }
+  $('#uname').textContent = u.name;
+  $('#userbar').classList.remove('hide');
+  themeKey = 'tbm_theme_' + key; loadTheme();
+  $('#themeBtn').onclick = openTheme;
+  $('#logout').onclick = () => { clearSession(); location.reload(); };
+  db = await openDB(u.dbName);
+  $('#app').classList.remove('hide');
+}
+
+boot().catch(() => { $('#msg').textContent = 'Trình duyệt không cho lưu dữ liệu.'; });
+</script>
+</body>
+</html>
